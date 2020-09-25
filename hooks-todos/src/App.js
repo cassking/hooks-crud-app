@@ -36,6 +36,12 @@ function reducer(state, action) {
     return {
       count: state.count + 1,
     }
+    case "decrement":
+    return {
+      count: state.count - 1,
+    }
+    case "reset":
+    return  initialState
     default:
       return initialState
   }
@@ -51,6 +57,12 @@ export default function App() {
       <button
         className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2'
         onClick={() => dispatch({type: "increment"})}>Increment</button>
+        <button
+        className='bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded m-2'
+        onClick={() => dispatch({type: "decrement"})}>Decrement</button>
+        <button
+        className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded m-2'
+        onClick={() => dispatch({type: "reset"})}>Reset</button>
 
     </div>
   )
