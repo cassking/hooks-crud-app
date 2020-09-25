@@ -34,11 +34,27 @@ export default function reducer(state, action) {
           todos: addedTodos
         }
       case "EDIT_TODO":
+        return {
+          ...state,
+          currentTodo: action.payload 
+        }
 
+      case "UPDATE_TODO":
+        const updatedTodo = { ...state.currentTodo, text: action.payload }
+        const updatedTodoIndex = state.todos.findIndex(
+          todo => todo.id === state.currentTodo.id
+        )
+        const updatedTodos = [
+          ...state.todos.slice(0,updatedTodoIndex),
+          updatedTodo,
+          ...state.todoslslice(updatedTodoIndex +1)
+        ]
 
-      return {
-
-      }
+        return {
+          ...state,
+          currentTodo: {
+          todos: updatedTodos}
+        }
     default:
       return state;
   }
