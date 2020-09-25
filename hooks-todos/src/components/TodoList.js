@@ -18,7 +18,12 @@ export default function TodoList() {
         <span
         onDoubleClick={ () => dispatch({type: "TOGGLE_TODO", payload: todo })}
         className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-red-400"}`}>{todo.text}</span>
-        <button> [Edit] </button>        <button> [Delete] </button>
+        <button
+        onDoubleClick={ () => dispatch({type: "EDIT_TODO", payload: todo })}
+        >[Edit]</button>
+        <button
+          onDoubleClick={ () => dispatch({type: "DELETE_TODO", payload: todo })}
+        >[Delete]</button>
 
         </li>
       ))}

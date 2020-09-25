@@ -1,3 +1,6 @@
+
+import { v4 as uuidv4 } from 'uuid';
+
 export default function reducer(state, action) {
   switch(action.type) {
     case "TOGGLE_TODO":
@@ -10,7 +13,32 @@ export default function reducer(state, action) {
         return {
           ...state,
           todos: toggledTodos
+        };
+
+    case "DELETE_TODO":
+      const filteredTodos = state.todos.filter((todo) =>
+      todo.id !== action.payload.id)
+      return {
+        ...state,
+        todos: filteredTodos
+      };
+      case "ADD_TODO":
+        const newTodo = {
+          id: uuidv4(),
+          text: action.payload,
+          complete: false,
         }
+        const addedTodos = [...state.todos, newTodo]
+        return {
+          ...state,
+          todos: addedTodos
+        }
+      case "EDIT_TODO":
+
+
+      return {
+
+      }
     default:
       return state;
   }
