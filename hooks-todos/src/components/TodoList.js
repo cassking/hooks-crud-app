@@ -11,10 +11,13 @@ export default function TodoList() {
   return (
   <div className="container mx-auto max-w-md text-center font-sans bg-light-gray">
   <h1 className="text-bold font-serif text-lg">{title}</h1>
+  <h4 className="text-sm text-green-800">Double click to change status</h4>
     <ul className="bg-blue">
       {state.todos.map(todo => (
         <li className="flex items-center border-dotted border-2 border-blue my-2 py-4 text-sm" key={todo.id}>
-        <span className="flex-1 ml-12 cursor-pointer">{todo.text}</span>
+        <span
+        onDoubleClick={ () => dispatch({type: "TOGGLE_TODO", payload: todo })}
+        className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-red-400"}`}>{todo.text}</span>
         <button> [Edit] </button>        <button> [Delete] </button>
 
         </li>
