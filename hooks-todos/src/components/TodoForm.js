@@ -16,7 +16,7 @@ useEffect(() => { // sets the text inside input field
     // display text in input
     setTodo(currentTodo.text)
   } else {//if to do deleted while text is in input set it to empty string
-    setTodo("")
+    setTodo("")// clear input with empty string
   }
 }, [currentTodo.id]) // if  todo id changes then run the effect function
 

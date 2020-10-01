@@ -26,6 +26,15 @@ export default function reducer(state, action) {
         todos: filteredTodos
       };
       case "ADD_TODO":
+        if (!action.payload) { // prevents from adding empty item in list
+          return state;
+        }
+        // findIndex returns a nubmer but to convert to boolean return add > -1
+        //> -1 if it found a valid index... then return true
+        if (state.todos.findIndex(todo => todo.text === action.payload) > -1) {
+          // also if we are adding a duplicate to do, simply return state
+          return state;
+        }
         const newTodo = {
           id: uuidv4(),
           text: action.payload,
@@ -43,6 +52,15 @@ export default function reducer(state, action) {
         }
 
       case "UPDATE_TODO":
+        if (!action.payload) { // prevents from adding empty item in list
+          return state;
+        }
+        // findIndex returns a nubmer but to convert to boolean return add > -1
+        //> -1 if it found a valid index... then return true
+        if (state.todos.findIndex(todo => todo.text === action.payload) > -1) {
+          // also if we are adding a duplicate to do, simply return state
+          return state;
+        }
         const updatedTodo = { ...state.currentTodo, text: action.payload }
         const updatedTodoIndex = state.todos.findIndex(
           todo => todo.id === state.currentTodo.id
