@@ -18,8 +18,11 @@ export default function reducer(state, action) {
     case "DELETE_TODO":
       const filteredTodos = state.todos.filter((todo) =>
       todo.id !== action.payload.id)
+      const isRemovedTodo = state.currentTodo.id === action.payload.id ? {} : state.currentTodo;
+      
       return {
         ...state,
+        currentTodo: isRemovedTodo,// remove to do from search input once deleted
         todos: filteredTodos
       };
       case "ADD_TODO":

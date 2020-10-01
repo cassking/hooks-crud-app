@@ -11,10 +11,12 @@ const [todo, setTodo]= useState("");
 // initial currentTodo state to empty object
 const {state: {currentTodo = {}}, dispatch} = useContext(TodosContext)
 // display currentTodo selectedin input field
-useEffect(() => {
+useEffect(() => { // sets the text inside input field
   if (currentTodo.text) {
     // display text in input
     setTodo(currentTodo.text)
+  } else {//if to do deleted while text is in input set it to empty string
+    setTodo("")
   }
 }, [currentTodo.id]) // if  todo id changes then run the effect function
 
