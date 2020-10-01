@@ -22,9 +22,9 @@ useEffect(() => {
 const handleSubmit = (event) => {
   event.preventDefault();
 
-  if (currentTodo.text) {
+  if (currentTodo.text) {// do we have a current todo in state? if so..
     dispatch({type: "UPDATE_TODO", payload: todo})
-  } else {
+  } else {// if we dont have a to do add one
     dispatch({type: "ADD_TODO", payload: todo});
 
   }

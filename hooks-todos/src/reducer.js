@@ -47,13 +47,13 @@ export default function reducer(state, action) {
         const updatedTodos = [
           ...state.todos.slice(0,updatedTodoIndex),
           updatedTodo,
-          ...state.todoslslice(updatedTodoIndex +1)
+          ...state.todos.slice(updatedTodoIndex +1)
         ]
 
         return {
           ...state,
-          currentTodo: {
-          todos: updatedTodos}
+          currentTodo: {},
+          todos: updatedTodos
         }
     default:
       return state;
