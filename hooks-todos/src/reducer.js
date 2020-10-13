@@ -3,6 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function reducer(state, action) {
   switch(action.type) {
+    case "GET_TODOS":
+      return {
+        ...state,
+        todos: action.payload
+      }
     case "TOGGLE_TODO":
       const toggledTodos = state.todos.map( (todo) =>
       // if to do ids match
