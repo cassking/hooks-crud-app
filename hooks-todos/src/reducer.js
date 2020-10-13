@@ -12,7 +12,8 @@ export default function reducer(state, action) {
       const toggledTodos = state.todos.map( (todo) =>
       // if to do ids match
         todo.id === action.payload.id
-        ? { ...action.payload,complete: !action.payload.complete }
+        // ? { ...action.payload,complete: !action.payload.complete }
+        ? action.payload
         : todo
         )
         return {

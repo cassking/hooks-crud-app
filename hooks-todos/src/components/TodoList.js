@@ -17,7 +17,12 @@ export default function TodoList() {
       {state.todos.map(todo => (
         <li className="flex items-center border-dotted border-2 border-blue my-2 py-4 text-sm" key={todo.id}>
         <span
-        onDoubleClick={ () => dispatch({type: "TOGGLE_TODO", payload: todo })}
+        onDoubleClick={ async () => {
+          const response =  await axios.patch(`https://cors-anywhere.herokuapp.com/hooks-api-smoky.vercel.app/todos/${todo.id}`, {
+            complete: !todo.complete,
+          })
+        dispatch({type: "TOGGLE_TODO", payload: response.data })
+        }}
         className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-red-400"}`}>{todo.text}</span>
         <button
         onClick={ () => dispatch({type: "EDIT_TODO", payload: todo })}
