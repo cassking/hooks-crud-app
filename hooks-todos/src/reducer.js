@@ -31,21 +31,24 @@ export default function reducer(state, action) {
         todos: filteredTodos
       };
       case "ADD_TODO":
-        if (!action.payload) { // prevents from adding empty item in list
-          return state;
-        }
+        // if (!action.payload) { // prevents from adding empty item in list
+        //   return state;
+        // }
         // findIndex returns a nubmer but to convert to boolean return add > -1
         //> -1 if it found a valid index... then return true
-        if (state.todos.findIndex(todo => todo.text === action.payload) > -1) {
+        //if (state.todos.findIndex(todo => todo.text === action.payload) > -1) {
           // also if we are adding a duplicate to do, simply return state
-          return state;
-        }
-        const newTodo = {
-          id: uuidv4(),
-          text: action.payload,
-          complete: false,
-        }
-        const addedTodos = [...state.todos, newTodo]
+        //   return state;
+        // }
+        // // const newTodo = { // not needed aftar adding axios post
+        //   id: uuidv4(),
+        //   text: action.payload,
+        //   complete: false,
+        // }
+        // const addedTodos = [...state.todos, newTodo]
+        // last item can now be new item from post api
+        const addedTodos = [...state.todos, action.payload]
+
         return {
           ...state,
           todos: addedTodos

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useContext } from 'react';
 import TodosContext from '../context';
 
@@ -20,10 +21,16 @@ export default function TodoList() {
         className={`flex-1 ml-12 cursor-pointer ${todo.complete && "line-through text-red-400"}`}>{todo.text}</span>
         <button
         onClick={ () => dispatch({type: "EDIT_TODO", payload: todo })}
-        >[Edit]</button>
+        >[ Edit ]</button>
         <button
-          onClick={ () => dispatch({type: "DELETE_TODO", payload: todo })}
-        >[Delete]</button>
+        //new delete
+        onClick={async () => {
+          await axios.delete(`https://cors-anywhere.herokuapp.com/hooks-api-smoky.vercel.app/todos/${todo.id}`);
+            dispatch({type: "DELETE_TODO", payload: todo });
+          }}
+          // previous delete
+          // onClick={ () => dispatch({type: "DELETE_TODO", payload: todo })}
+        >[ Delete ]</button>
 
         </li>
       ))}
