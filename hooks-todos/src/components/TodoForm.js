@@ -29,9 +29,13 @@ const handleSubmit =  async (event) => {
 
   if (currentTodo.text) {
     // do we have a current todo in state? if so..
-    dispatch({type: "UPDATE_TODO", payload: todo})
+    const response = await axios.patch(`https://cors-anywhere.herokuapp.com/hooks-api-smoky.vercel.app/todos/${currentTodo.id}`,
+    {
+      text: todo
+    })
+    dispatch({type: "UPDATE_TODO", payload: response.data})
   } else {// if we dont have a to do add one
-    const response = await axios.post('https://cors-anywhere.herokuapp.com/hooks-api-smoky.vercel.app/todos/',
+    const response = await axios.post( `https://cors-anywhere.herokuapp.com/hooks-api-smoky.vercel.app/todos/${todo.id}`,
     // second argument is what we want to pass
     {
       id: uuidv4(),
